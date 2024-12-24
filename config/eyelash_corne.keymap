@@ -62,10 +62,10 @@
             //                    | GUI | LWR | SPC |   | ENT | BSPC | RSE 
 
             bindings = <
-&kp TAB    &kp FI_Q  &kp FI_W  &kp FI_E  &kp FI_R  &kp FI_T                          &kp UP                &kp FI_Y  &kp FI_U  &kp FI_I      &kp FI_O       &kp FI_P         &kp FI_A_RING
-&kp LCTRL  &kp FI_A  &kp FI_S  &kp FI_D  &kp FI_F  &kp FI_G                &kp LEFT  &kp ENTER  &kp RIGHT  &kp FI_H  &kp FI_J  &kp FI_K      &kp FI_L       &kp FI_O_UMLAUT  &kp FI_A_UMLAUT
-&kp LSHFT  &kp FI_Z  &kp FI_X  &kp FI_C  &kp FI_V  &kp FI_B   &kp SPACE              &kp DOWN              &kp FI_N  &kp FI_M  &kp FI_COMMA  &kp FI_PERIOD  &kp FI_MINUS     &mt RALT ESC
-                               &kp LGUI  &mo 1     &kp SPACE                                               &kp RET   &kp BSPC  &mo 2
+&kp TAB    &kp FI_Q  &kp FI_W  &kp FI_E  &kp FI_R  &kp FI_T                           &kp UP                &kp FI_Y  &kp FI_U  &kp FI_I      &kp FI_O       &kp FI_P         &kp FI_A_RING
+&kp LCTRL  &kp FI_A  &kp FI_S  &kp FI_D  &kp FI_F  &kp FI_G                 &kp LEFT  &kp ENTER  &kp RIGHT  &kp FI_H  &kp FI_J  &kp FI_K      &kp FI_L       &kp FI_O_UMLAUT  &kp FI_A_UMLAUT
+&kp LSHFT  &kp FI_Z  &kp FI_X  &kp FI_C  &kp FI_V  &kp FI_B   &kp DELETE              &kp DOWN              &kp FI_N  &kp FI_M  &kp FI_COMMA  &kp FI_PERIOD  &kp FI_MINUS     &mt RALT ESC
+                               &kp LGUI  &mo 1     &kp SPACE                                                &kp RET   &kp BSPC  &mo 2
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
