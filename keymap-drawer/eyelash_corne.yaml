@@ -34,7 +34,7 @@ layers:
   - (ZMK HID USAGE(HID USAGE KEY, HID USAGE KEY KEYBOARD C))
   - (ZMK HID USAGE(HID USAGE KEY, HID USAGE KEY KEYBOARD V))
   - (ZMK HID USAGE(HID USAGE KEY, HID USAGE KEY KEYBOARD B))
-  - $$mdi:keyboard-space$$
+  - $$mdi:backspace-reverse-outline$$
   - $$mdi:arrow-down-bold$$
   - (ZMK HID USAGE(HID USAGE KEY, HID USAGE KEY KEYBOARD N))
   - (ZMK HID USAGE(HID USAGE KEY, HID USAGE KEY KEYBOARD M))
