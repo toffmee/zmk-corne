@@ -1,3 +1,4 @@
+layout: {zmk_keyboard: eyelash_corne}
 layers:
   QWERTY:
   - $$mdi:keyboard-tab$$
@@ -50,9 +51,9 @@ layers:
   - NUMBER
   SYMBOL:
   - (LS(ZMK HID USAGE(HID USAGE KEY, HID USAGE KEY KEYBOARD RIGHT BRACKET AND RIGHT BRACE)))
-  - Ctl+ A
+  - Ctl+A
   - $$mdi:arrow-up-bold$$
-  - Ctl+ E
+  - Ctl+E
   - (LA(LS(ZMK HID USAGE(HID USAGE KEY, HID USAGE KEY KEYBOARD 8 AND ASTERISK))))
   - (LA(LS(ZMK HID USAGE(HID USAGE KEY, HID USAGE KEY KEYBOARD 9 AND LEFT PARENTHESIS))))
   - {t: '$$mdi:menu-up$$', s: '$$mdi:mouse$$'}
