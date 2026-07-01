@@ -9,10 +9,14 @@ manifest:
   projects:
     - name: eyelash_corne
       url: https://github.com/a741725193/zmk-new_corne
-      revision: main
+      # Last revision with the eyelash_corne_left/right *board* definitions.
+      # Newer module revisions (2026-06-05 onward) replace them with shields
+      # for nice_nano_v2 and depend on the cormoran/zmk fork.
+      revision: d6e05a16d463e07921a833a9dccd2bb8a44ec22e
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      # Pinned release the module revision above was developed against.
+      revision: v0.3.0
       import: app/west.yml
   self:
     path: config
