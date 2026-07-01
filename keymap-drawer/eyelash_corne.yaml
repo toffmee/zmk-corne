@@ -121,11 +121,11 @@ layers:
   - {t: '$$mdi:menu-left$$', s: '$$mdi:mouse$$'}
   - $$mdi:mouse-left-click-outline$$
   - {t: '$$mdi:menu-right$$', s: '$$mdi:mouse$$'}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - RGB TOG
+  - RGB EFF
+  - RGB HUI
+  - RGB SAI
+  - RGB SPI
   - '&bl BL_DEC'
   - {t: '$$mdi:transfer$$', type: trans}
   - $$mdi:bluetooth-off$$
