@@ -95,19 +95,20 @@
             display-name = "NUMBER";
 
             // -----------------------------------------------------------------------------------------
-            // |     |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |     |
-            // |     |     |     |     |     |     |   |     |     |     |     |     |     |
-            // |     | BTC | BT1 | BT2 | BT3 |     |   |     |     |     |     |     |     |
-            //                   | GUI |     | SPC |   | ENT |     | ALT |
+            // |     |  1  |  2  |  3  |  4  |  5  |   |  6   |  7   |  8   |  9   |  0   |     |
+            // |     | F1  | F2  | F3  | F4  | F5  |   | RGBT | RGBF | HUE+ | SAT+ | SPD+ | BL- |
+            // |     | BTC | BT0 | BT1 | BT2 | EP+ |   |      | BLON | BLOF | BLTG | BLCY | BL+ |
+            //                   |     |     |     |   | SPC  | ENT  | BSPC |
+            // encoder: RGB brightness up/down
 
             bindings = <
-&trans  &kp FI_N1   &kp FI_N2     &kp FI_N3     &kp FI_N4     &kp FI_N5                            &mmv MOVE_UP                     &kp FI_N6  &kp FI_N7  &kp FI_N8   &kp FI_N9   &kp FI_N0     &trans
-&trans  &kp F1      &kp F2        &kp F3        &kp F4        &kp F5               &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &trans     &trans     &trans      &trans      &trans        &bl BL_DEC
+&trans  &kp FI_N1   &kp FI_N2     &kp FI_N3     &kp FI_N4     &kp FI_N5                            &mmv MOVE_UP                     &kp FI_N6        &kp FI_N7        &kp FI_N8        &kp FI_N9        &kp FI_N0        &trans
+&trans  &kp F1      &kp F2        &kp F3        &kp F4        &kp F5               &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_SPI  &bl BL_DEC
 &trans  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &ext_power EP_ON     &trans                    &mmv MOVE_DOWN                   &trans     &bl BL_ON  &bl BL_OFF  &bl BL_TOG  &bl BL_CYCLE  &bl BL_INC
                                   &trans        &trans        &trans                                                                &kp SPACE  &kp RET    &kp BSPC
             >;
 
-            sensor-bindings = <&scroll_encoder>;
+            sensor-bindings = <&rgb_encoder>;
         };
     };
 };
