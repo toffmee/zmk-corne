@@ -7,8 +7,6 @@
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk/pointing.h>
-#include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 
 /*
@@ -77,7 +75,7 @@
 
             // -----------------------------------------------------------------------------------------
             // |   ^   | CTRL+A |  UP  | CTRL+E |    {    |    }    |   |  !  |  %  |  "  |  '  |  |  |   #  |
-            // | BTCLR |  LEFT  | DOWN |  RIGHT |    (    |    )    |   |  ?  |  =  |  /  |  @  |  *  |   $  |
+            // | CTRL  |  LEFT  | DOWN |  RIGHT |    (    |    )    |   |  ?  |  =  |  /  |  @  |  *  |   $  |
             // |  SHFT |    <   |  >   |    ~   |    [    |    ]    |   |  `  |  +  |  \  |  &  |  €  |  ALT |
             //                         |   GUI  |         |   SPC   |   | ENT |     | RSE 
 

@@ -1,6 +1,26 @@
 - [中文](README.md)
 - [English](README_EN.md)
 
+## Notes for this fork (toffmee)
+
+- **Pinned builds:** `config/west.yml` pins the `eyelash_corne` module to the last
+  revision that still ships the `eyelash_corne_left/right` boards, and ZMK (plus the
+  build workflow) to `v0.3.0`. Newer module revisions (June 2026 onward) switched to a
+  nice_nano_v2 shield layout that depends on the cormoran/zmk fork — updating means
+  redoing `build.yaml` and `west.yml` together, not just bumping revisions.
+- **Screens & power rail:** the nice!view-compatible screens are fed from the switched
+  external power rail. `CONFIG_ZMK_RGB_UNDERGLOW_EXT_POWER=n` keeps RGB on/off from
+  cutting that rail (with it unset, RGB idle auto-off used to kill the screens
+  permanently, because the off state persists to flash settings).
+- **Recovery:** if the screens ever stay dark across reboots, press the `EP_ON` key on
+  the NUMBER layer (left hand, next to `BT 2`) — it re-enables external power on both
+  halves and persists. Flashing `settings_reset` also works but wipes Bluetooth bonds.
+  The screens are only readable at full backlight; backlight keys live on the NUMBER
+  layer's right hand.
+- **Flashing:** keymap-only changes need just the left (central) half reflashed. The
+  keymap-drawer bot pushes a `[Draw]` commit after each push, so `git pull --rebase`
+  before pushing.
+
 # 睫毛外设 (Eyelash Peripherals) Corne ZMK 仓库
 
 **该键盘与 [foostan's Corne](https://github.com/foostan/crkbd) 不同，无法与标准的 `corne` 固件兼容。**
