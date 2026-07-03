@@ -1,5 +1,6 @@
 #include <dt-bindings/zmk/mouse.h>
 #include "keys_fi.h"
+#include "keys_fi_win.h"
 #include <input/processors.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/backlight.h>
@@ -48,6 +49,17 @@
         tap-ms = <30>;
     };
 
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        // While the MAC flag layer (3) is toggled on, holding SYMBOL (1)
+        // also activates the macOS symbol overrides (4)
+        mac_symbol {
+            if-layers = <3 1>;
+            then-layer = <4>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -80,9 +92,9 @@
             //                         |   GUI  |         |   SPC   |   | ENT |     | RSE 
 
             bindings = <
-&kp FI_CARET  &kp LC(A)         &kp UP               &kp LC(E)     &kp FI_LEFT_BRACE        &kp FI_RIGHT_BRACE                                      &mmv MOVE_UP                     &kp FI_EXCLAMATION  &kp FI_PERCENT  &kp FI_DOUBLE_QUOTES  &kp FI_SINGLE_QUOTE  &kp FI_PIPE      &kp FI_HASH
-&kp LCTRL     &kp LEFT          &kp DOWN             &kp RIGHT     &kp FI_LEFT_PARENTHESIS  &kp FI_RIGHT_PARENTHESIS                &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp FI_QUESTION     &kp FI_EQUAL    &kp FI_SLASH          &kp FI_AT_SIGN       &kp FI_ASTERISK  &kp FI_DOLLAR
-&kp LSHFT     &kp FI_LESS_THAN  &kp FI_GREATER_THAN  &kp FI_TILDE  &kp FI_LEFT_BRACKET      &kp FI_RIGHT_BRACKET      &kp C_MUTE                    &mmv MOVE_DOWN                   &kp FI_GRAVE        &kp FI_PLUS     &kp FI_BACKSLASH      &kp FI_AMPERSAND     &kp FI_EURO      &kp LALT
+&kp FI_CARET  &kp LC(A)         &kp UP               &kp LC(E)     &kp FI_WIN_LEFT_BRACE        &kp FI_WIN_RIGHT_BRACE                                      &mmv MOVE_UP                     &kp FI_EXCLAMATION  &kp FI_PERCENT  &kp FI_DOUBLE_QUOTES  &kp FI_SINGLE_QUOTE  &kp FI_WIN_PIPE      &kp FI_HASH
+&kp LCTRL     &kp LEFT          &kp DOWN             &kp RIGHT     &kp FI_LEFT_PARENTHESIS  &kp FI_RIGHT_PARENTHESIS                &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &kp FI_QUESTION     &kp FI_EQUAL    &kp FI_SLASH          &kp FI_WIN_AT_SIGN       &kp FI_ASTERISK  &kp FI_WIN_DOLLAR
+&kp LSHFT     &kp FI_WIN_LESS_THAN  &kp FI_WIN_GREATER_THAN  &kp FI_WIN_TILDE  &kp FI_WIN_LEFT_BRACKET      &kp FI_WIN_RIGHT_BRACKET      &kp C_MUTE                    &mmv MOVE_DOWN                   &kp FI_GRAVE        &kp FI_PLUS     &kp FI_WIN_BACKSLASH      &kp FI_AMPERSAND     &kp FI_WIN_EURO      &kp LALT
                                                      &kp LGUI      &trans                   &kp SPACE                                                                                &kp RET             &trans          &trans
             >;
 
@@ -95,18 +107,54 @@
             // -----------------------------------------------------------------------------------------
             // |     |  1  |  2  |  3  |  4  |  5  |   |  6   |  7   |  8   |  9   |  0   |     |
             // |     | F1  | F2  | F3  | F4  | F5  |   | RGBT | RGBF | HUE+ | SAT+ | SPD+ | BL- |
-            // |     | BTC | BT0 | BT1 | BT2 | EP+ |   |      | BLON | BLOF | BLTG | BLCY | BL+ |
+            // |     | BTC | BT0 | BT1 | BT2 | EP+ |   | MAC  | BLON | BLOF | BLTG | BLCY | BL+ |
             //                   |     |     |     |   | SPC  | ENT  | BSPC |
             // encoder: RGB brightness up/down
 
             bindings = <
 &trans  &kp FI_N1   &kp FI_N2     &kp FI_N3     &kp FI_N4     &kp FI_N5                            &mmv MOVE_UP                     &kp FI_N6        &kp FI_N7        &kp FI_N8        &kp FI_N9        &kp FI_N0        &trans
 &trans  &kp F1      &kp F2        &kp F3        &kp F4        &kp F5               &mmv MOVE_LEFT  &mkp LCLK       &mmv MOVE_RIGHT  &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_HUI  &rgb_ug RGB_SAI  &rgb_ug RGB_SPI  &bl BL_DEC
-&trans  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &ext_power EP_ON     &trans                    &mmv MOVE_DOWN                   &trans     &bl BL_ON  &bl BL_OFF  &bl BL_TOG  &bl BL_CYCLE  &bl BL_INC
+&trans  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &ext_power EP_ON     &trans                    &mmv MOVE_DOWN                   &tog 3     &bl BL_ON  &bl BL_OFF  &bl BL_TOG  &bl BL_CYCLE  &bl BL_INC
                                   &trans        &trans        &trans                                                                &kp SPACE  &kp RET    &kp BSPC
             >;
 
             sensor-bindings = <&rgb_encoder>;
+        };
+
+        mac_layer {
+            display-name = "MAC";
+
+            // OS mode flag, toggled with the MAC key on the NUMBER layer.
+            // Every key passes through; while this is on, the conditional
+            // layer above swaps SYMBOL's OS-specific characters to their
+            // macOS combos, and the screen shows "MAC" as a reminder.
+            // NOTE: mode resets to Windows on reboot and wake from deep sleep.
+
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans          &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans          &trans          &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans  &trans  &trans                                  &trans  &trans  &trans
+            >;
+        };
+
+        mac_symbol_layer {
+            display-name = "SYMBOL";
+
+            // macOS overrides for the SYMBOL layer: only the characters whose
+            // key combos differ from Windows; blank cells fall through to SYMBOL
+            // -----------------------------------------------------------------------------------------
+            // |     |     |     |     |  {  |  }  |   |     |     |     |     |  |  |     |
+            // |     |     |     |     |     |     |   |     |     |     |  @  |     |  $  |
+            // |     |  <  |  >  |  ~  |  [  |  ]  |   |     |     |  \  |     |  €  |     |
+            //                   |     |     |     |   |     |     |     |
+
+            bindings = <
+&trans  &trans            &trans               &trans        &kp FI_LEFT_BRACE    &kp FI_RIGHT_BRACE                          &trans          &trans  &trans  &trans            &trans          &kp FI_PIPE  &trans
+&trans  &trans            &trans               &trans        &trans               &trans                              &trans  &trans  &trans  &trans  &trans  &trans            &kp FI_AT_SIGN  &trans       &kp FI_DOLLAR
+&trans  &kp FI_LESS_THAN  &kp FI_GREATER_THAN  &kp FI_TILDE  &kp FI_LEFT_BRACKET  &kp FI_RIGHT_BRACKET  &trans              &trans          &trans  &trans  &kp FI_BACKSLASH  &trans          &kp FI_EURO  &trans
+                                               &trans        &trans               &trans                                                    &trans  &trans  &trans
+            >;
         };
     };
 };

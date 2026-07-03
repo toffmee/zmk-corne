@@ -17,6 +17,11 @@
   halves and persists. Flashing `settings_reset` also works but wipes Bluetooth bonds.
   The screens are only readable at full backlight; backlight keys live on the NUMBER
   layer's right hand.
+- **Windows/macOS modes:** the SYMBOL layer types Windows (AltGr) combos by default.
+  The `MAC` key on the NUMBER layer (right hand, N position) toggles macOS mode, which
+  swaps the 12 differing characters (`{ } [ ] | \ @ $ < > ~ €`) to their Option combos
+  and shows "MAC" on the screens. The mode resets to Windows on reboot or wake from
+  deep sleep, so re-toggle it when working on the Mac.
 - **Flashing:** keymap-only changes need just the left (central) half reflashed. The
   keymap-drawer bot pushes a `[Draw]` commit after each push, so `git pull --rebase`
   before pushing.
